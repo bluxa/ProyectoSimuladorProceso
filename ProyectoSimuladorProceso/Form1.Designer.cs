@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnAuxiliar = new System.Windows.Forms.Button();
+            this.btnAceptar = new System.Windows.Forms.Button();
             this.txtCpu = new System.Windows.Forms.TextBox();
             this.txtMemoria = new System.Windows.Forms.TextBox();
             this.txtQuantum = new System.Windows.Forms.TextBox();
@@ -43,17 +45,41 @@
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.picRestaurar = new System.Windows.Forms.PictureBox();
             this.picCerrar = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoProceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Memoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.dataGridView3 = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.button1);
+            this.groupBox1.Controls.Add(this.btnAuxiliar);
+            this.groupBox1.Controls.Add(this.btnAceptar);
             this.groupBox1.Controls.Add(this.txtCpu);
             this.groupBox1.Controls.Add(this.txtMemoria);
             this.groupBox1.Controls.Add(this.txtQuantum);
@@ -65,10 +91,30 @@
             this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(30, 83);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 336);
+            this.groupBox1.Size = new System.Drawing.Size(245, 357);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Información del Proceso";
+            // 
+            // btnAuxiliar
+            // 
+            this.btnAuxiliar.Location = new System.Drawing.Point(132, 318);
+            this.btnAuxiliar.Name = "btnAuxiliar";
+            this.btnAuxiliar.Size = new System.Drawing.Size(81, 26);
+            this.btnAuxiliar.TabIndex = 8;
+            this.btnAuxiliar.Text = "Iniciar";
+            this.btnAuxiliar.UseVisualStyleBackColor = true;
+            this.btnAuxiliar.Click += new System.EventHandler(this.btnAuxiliar_Click);
+            // 
+            // btnAceptar
+            // 
+            this.btnAceptar.Location = new System.Drawing.Point(29, 318);
+            this.btnAceptar.Name = "btnAceptar";
+            this.btnAceptar.Size = new System.Drawing.Size(81, 26);
+            this.btnAceptar.TabIndex = 2;
+            this.btnAceptar.Text = "Aceptar";
+            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtCpu
             // 
@@ -209,14 +255,152 @@
             this.picCerrar.TabStop = false;
             this.picCerrar.Click += new System.EventHandler(this.picCerrar_Click);
             // 
-            // button1
+            // dataGridView1
             // 
-            this.button1.Location = new System.Drawing.Point(77, 298);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 26);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Iniciar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.TipoProceso,
+            this.Quantum,
+            this.Memoria,
+            this.Cpu});
+            this.dataGridView1.Location = new System.Drawing.Point(290, 76);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(548, 111);
+            this.dataGridView1.TabIndex = 3;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // TipoProceso
+            // 
+            this.TipoProceso.HeaderText = "Tipo De Proceso";
+            this.TipoProceso.Name = "TipoProceso";
+            // 
+            // Quantum
+            // 
+            this.Quantum.HeaderText = "Quantum";
+            this.Quantum.Name = "Quantum";
+            // 
+            // Memoria
+            // 
+            this.Memoria.HeaderText = "Memoria";
+            this.Memoria.Name = "Memoria";
+            // 
+            // Cpu
+            // 
+            this.Cpu.HeaderText = "Uso del CPU";
+            this.Cpu.Name = "Cpu";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5});
+            this.dataGridView2.Location = new System.Drawing.Point(290, 212);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.Size = new System.Drawing.Size(548, 111);
+            this.dataGridView2.TabIndex = 4;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tipo De Proceso";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Quantum";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(308, 54);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(126, 19);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "En cola de proceso";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(308, 190);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(103, 19);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "En estado New";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(308, 327);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(112, 19);
+            this.label8.TabIndex = 12;
+            this.label8.Text = "En estado Ready";
+            // 
+            // dataGridView3
+            // 
+            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView3.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewTextBoxColumn9,
+            this.dataGridViewTextBoxColumn10});
+            this.dataGridView3.Location = new System.Drawing.Point(290, 349);
+            this.dataGridView3.Name = "dataGridView3";
+            this.dataGridView3.Size = new System.Drawing.Size(548, 104);
+            this.dataGridView3.TabIndex = 13;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Id";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Tipo De Proceso";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Quantum";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            // 
+            // dataGridViewTextBoxColumn9
+            // 
+            this.dataGridViewTextBoxColumn9.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
+            // 
+            // dataGridViewTextBoxColumn10
+            // 
+            this.dataGridViewTextBoxColumn10.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             // 
             // Form1
             // 
@@ -224,7 +408,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 439);
+            this.ClientSize = new System.Drawing.Size(898, 482);
+            this.Controls.Add(this.dataGridView3);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -239,7 +429,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -259,7 +453,29 @@
         private System.Windows.Forms.TextBox txtQuantum;
         private System.Windows.Forms.TextBox txtCpu;
         private System.Windows.Forms.TextBox txtMemoria;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnAceptar;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TipoProceso;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Quantum;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Memoria;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Cpu;
+        private System.Windows.Forms.Button btnAuxiliar;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dataGridView3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
     }
 }
 
