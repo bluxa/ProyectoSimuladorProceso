@@ -128,7 +128,6 @@ namespace ProyectoSimuladorProceso
         private void btnAuxiliar_Click(object sender, EventArgs e)
         {
             CrearHilo();
-
         }
 
     }
