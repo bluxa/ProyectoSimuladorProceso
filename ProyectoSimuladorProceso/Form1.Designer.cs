@@ -33,8 +33,15 @@
             this.btnAuxiliar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
             this.txtCpu = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
             this.txtMemoria = new System.Windows.Forms.TextBox();
             this.txtQuantum = new System.Windows.Forms.TextBox();
+            this.dgvColaProceso = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TipoProceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantum = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Memoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -45,19 +52,12 @@
             this.picMinimizar = new System.Windows.Forms.PictureBox();
             this.picRestaurar = new System.Windows.Forms.PictureBox();
             this.picCerrar = new System.Windows.Forms.PictureBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TipoProceso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantum = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Memoria = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cpu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvNew = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.dataGridView3 = new System.Windows.Forms.DataGridView();
@@ -67,12 +67,12 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColaProceso)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNew)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,24 +81,26 @@
             this.groupBox1.Controls.Add(this.btnAuxiliar);
             this.groupBox1.Controls.Add(this.btnAceptar);
             this.groupBox1.Controls.Add(this.txtCpu);
+            this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtMemoria);
             this.groupBox1.Controls.Add(this.txtQuantum);
+            this.groupBox1.Controls.Add(this.dgvColaProceso);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.cmbTipoProceso);
-            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(30, 83);
+            this.groupBox1.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(12, 78);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(245, 357);
+            this.groupBox1.Size = new System.Drawing.Size(766, 343);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Información del Proceso";
+            this.groupBox1.Text = "INFORMACIÓN DE LOS PROCESOS";
             // 
             // btnAuxiliar
             // 
-            this.btnAuxiliar.Location = new System.Drawing.Point(132, 318);
+            this.btnAuxiliar.Location = new System.Drawing.Point(431, 303);
             this.btnAuxiliar.Name = "btnAuxiliar";
             this.btnAuxiliar.Size = new System.Drawing.Size(81, 26);
             this.btnAuxiliar.TabIndex = 8;
@@ -108,7 +110,7 @@
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(29, 318);
+            this.btnAceptar.Location = new System.Drawing.Point(56, 303);
             this.btnAceptar.Name = "btnAceptar";
             this.btnAceptar.Size = new System.Drawing.Size(81, 26);
             this.btnAceptar.TabIndex = 2;
@@ -119,35 +121,85 @@
             // txtCpu
             // 
             this.txtCpu.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCpu.Location = new System.Drawing.Point(29, 266);
+            this.txtCpu.Location = new System.Drawing.Point(29, 263);
             this.txtCpu.Name = "txtCpu";
             this.txtCpu.ReadOnly = true;
-            this.txtCpu.Size = new System.Drawing.Size(184, 26);
+            this.txtCpu.Size = new System.Drawing.Size(135, 26);
             this.txtCpu.TabIndex = 7;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F);
+            this.label6.Location = new System.Drawing.Point(412, 38);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(110, 19);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Cola de proceso";
             // 
             // txtMemoria
             // 
             this.txtMemoria.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMemoria.Location = new System.Drawing.Point(29, 197);
+            this.txtMemoria.Location = new System.Drawing.Point(29, 194);
             this.txtMemoria.Name = "txtMemoria";
             this.txtMemoria.ReadOnly = true;
-            this.txtMemoria.Size = new System.Drawing.Size(184, 26);
+            this.txtMemoria.Size = new System.Drawing.Size(135, 26);
             this.txtMemoria.TabIndex = 6;
             // 
             // txtQuantum
             // 
             this.txtQuantum.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtQuantum.Location = new System.Drawing.Point(29, 129);
+            this.txtQuantum.Location = new System.Drawing.Point(29, 125);
             this.txtQuantum.Name = "txtQuantum";
             this.txtQuantum.ReadOnly = true;
-            this.txtQuantum.Size = new System.Drawing.Size(184, 26);
+            this.txtQuantum.Size = new System.Drawing.Size(135, 26);
             this.txtQuantum.TabIndex = 5;
+            // 
+            // dgvColaProceso
+            // 
+            this.dgvColaProceso.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvColaProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvColaProceso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
+            this.TipoProceso,
+            this.Quantum,
+            this.Memoria,
+            this.Cpu});
+            this.dgvColaProceso.Location = new System.Drawing.Point(204, 60);
+            this.dgvColaProceso.Name = "dgvColaProceso";
+            this.dgvColaProceso.Size = new System.Drawing.Size(543, 229);
+            this.dgvColaProceso.TabIndex = 3;
+            // 
+            // Id
+            // 
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            // 
+            // TipoProceso
+            // 
+            this.TipoProceso.HeaderText = "Tipo De Proceso";
+            this.TipoProceso.Name = "TipoProceso";
+            // 
+            // Quantum
+            // 
+            this.Quantum.HeaderText = "Quantum";
+            this.Quantum.Name = "Quantum";
+            // 
+            // Memoria
+            // 
+            this.Memoria.HeaderText = "Memoria";
+            this.Memoria.Name = "Memoria";
+            // 
+            // Cpu
+            // 
+            this.Cpu.HeaderText = "Uso del CPU";
+            this.Cpu.Name = "Cpu";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 244);
+            this.label5.Location = new System.Drawing.Point(25, 241);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(91, 19);
             this.label5.TabIndex = 4;
@@ -157,7 +209,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(25, 175);
+            this.label4.Location = new System.Drawing.Point(25, 172);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(64, 19);
             this.label4.TabIndex = 3;
@@ -167,7 +219,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(25, 106);
+            this.label3.Location = new System.Drawing.Point(25, 102);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(64, 19);
             this.label3.TabIndex = 2;
@@ -198,7 +250,7 @@
             "Base de Datos"});
             this.cmbTipoProceso.Location = new System.Drawing.Point(29, 60);
             this.cmbTipoProceso.Name = "cmbTipoProceso";
-            this.cmbTipoProceso.Size = new System.Drawing.Size(184, 27);
+            this.cmbTipoProceso.Size = new System.Drawing.Size(135, 27);
             this.cmbTipoProceso.TabIndex = 0;
             this.cmbTipoProceso.SelectedIndexChanged += new System.EventHandler(this.cmbTipoProceso_SelectedIndexChanged);
             // 
@@ -255,58 +307,19 @@
             this.picCerrar.TabStop = false;
             this.picCerrar.Click += new System.EventHandler(this.picCerrar_Click);
             // 
-            // dataGridView1
+            // dgvNew
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Id,
-            this.TipoProceso,
-            this.Quantum,
-            this.Memoria,
-            this.Cpu});
-            this.dataGridView1.Location = new System.Drawing.Point(290, 76);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(548, 111);
-            this.dataGridView1.TabIndex = 3;
-            // 
-            // Id
-            // 
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            // 
-            // TipoProceso
-            // 
-            this.TipoProceso.HeaderText = "Tipo De Proceso";
-            this.TipoProceso.Name = "TipoProceso";
-            // 
-            // Quantum
-            // 
-            this.Quantum.HeaderText = "Quantum";
-            this.Quantum.Name = "Quantum";
-            // 
-            // Memoria
-            // 
-            this.Memoria.HeaderText = "Memoria";
-            this.Memoria.Name = "Memoria";
-            // 
-            // Cpu
-            // 
-            this.Cpu.HeaderText = "Uso del CPU";
-            this.Cpu.Name = "Cpu";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNew.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5});
-            this.dataGridView2.Location = new System.Drawing.Point(290, 212);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(548, 111);
-            this.dataGridView2.TabIndex = 4;
+            this.dgvNew.Location = new System.Drawing.Point(798, 138);
+            this.dgvNew.Name = "dgvNew";
+            this.dgvNew.Size = new System.Drawing.Size(544, 229);
+            this.dgvNew.TabIndex = 4;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -333,21 +346,11 @@
             this.dataGridViewTextBoxColumn5.HeaderText = "Uso del CPU";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(308, 54);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(126, 19);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "En cola de proceso";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(308, 190);
+            this.label7.Location = new System.Drawing.Point(1007, 116);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(103, 19);
             this.label7.TabIndex = 10;
@@ -357,7 +360,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(308, 327);
+            this.label8.Location = new System.Drawing.Point(329, 467);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 19);
             this.label8.TabIndex = 12;
@@ -372,7 +375,7 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
-            this.dataGridView3.Location = new System.Drawing.Point(290, 349);
+            this.dataGridView3.Location = new System.Drawing.Point(117, 489);
             this.dataGridView3.Name = "dataGridView3";
             this.dataGridView3.Size = new System.Drawing.Size(548, 104);
             this.dataGridView3.TabIndex = 13;
@@ -408,29 +411,26 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(898, 482);
+            this.ClientSize = new System.Drawing.Size(864, 448);
             this.Controls.Add(this.dataGridView3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.dataGridView2);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvNew);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simulador";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvColaProceso)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNew)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -454,14 +454,14 @@
         private System.Windows.Forms.TextBox txtCpu;
         private System.Windows.Forms.TextBox txtMemoria;
         private System.Windows.Forms.Button btnAceptar;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvColaProceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoProceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Memoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpu;
         private System.Windows.Forms.Button btnAuxiliar;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
