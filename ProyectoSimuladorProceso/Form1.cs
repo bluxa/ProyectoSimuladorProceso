@@ -16,7 +16,11 @@ namespace ProyectoSimuladorProceso
     public partial class Form1 : Form
     {
         private static Mutex mut = new Mutex();
+
+        private static Mutex mut1 = new Mutex();
+
         delegate void delegado(object valor);
+        delegate void delegadoaux(object valor);
         public Form1()
         {
             InitializeComponent();
@@ -76,6 +80,7 @@ namespace ProyectoSimuladorProceso
         //Insertarlo a una cola
         Cola.Cola miColaProceso = new Cola.Cola();
         Cola.Cola readyCola = new Cola.Cola();
+        Cola.Cola runningCola = new Cola.Cola();
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -97,7 +102,7 @@ namespace ProyectoSimuladorProceso
             {
                 if (dgvColaProceso.RowCount > 0)
                 {
-                    MessageBox.Show("Eliminando " + dgvColaProceso.CurrentRow.Index);
+                    MessageBox.Show("Moviendo a estado NEW " ,""+ dgvColaProceso.CurrentRow.Index, MessageBoxButtons.OK,MessageBoxIcon.Information);
                     dgvColaProceso.Rows.RemoveAt(dgvColaProceso.CurrentRow.Index);
                     
                 }
@@ -109,20 +114,24 @@ namespace ProyectoSimuladorProceso
                 dgvNew.Rows.Add(auxProceso);
 
                 new Thread(metodo).Start(item);
-            }
+            }  // running
         }
         public void metodo(object item)
         {
             mut.WaitOne();
             
-            Thread.Sleep(2000);
+            Thread.Sleep(4000);
             
-            readyCola.Push(item);
+            readyCola.Push(item);  // 15) impresa   15) navegador 15) java
+            // Running
+            // impresora 60S ejecucion
 
             delegado MD = new delegado(Actualizar1);
             this.Invoke(MD, new object[] { item });     
             
-            mut.ReleaseMutex(); 
+            mut.ReleaseMutex();
+
+            runningHilo();
         }
 
         public void Actualizar1(object item)
@@ -132,9 +141,7 @@ namespace ProyectoSimuladorProceso
 
             if (dgvNew.RowCount > 0)
             {
-                //MessageBox.Show("Eliminando " + dataGridView2.CurrentRow.Index);
-                //dataGridView2.Rows.RemoveAt(dataGridView2.CurrentRow.Index);
-
+     
                 string[] auxProceso = item.ToString().Split(';');
 
                 foreach (DataGridViewRow Row in dgvNew.Rows)
@@ -144,8 +151,6 @@ namespace ProyectoSimuladorProceso
 
                     if (Valor == auxProceso[1])
                     {
-                        //dataGridView2.Rows[Convert.ToInt32(strFila)].DefaultCellStyle.BackColor = Color.Green;
-                        //MessageBox.Show("COLOREANDO " + strFila);
                         dgvNew.Rows.RemoveAt(Convert.ToInt32(strFila));
                     }
                 }
@@ -155,8 +160,56 @@ namespace ProyectoSimuladorProceso
 
         private void btnAuxiliar_Click(object sender, EventArgs e)
         {
-            CrearHilo();
+            CrearHilo();       
         }
 
+        public void runningHilo() 
+        {
+            mut1.WaitOne();
+
+            ClsProceso item;
+            item = (ClsProceso)readyCola.Pop();                    
+
+            Thread.Sleep(4000);
+
+            runningCola.Push(item);
+          //  MessageBox.Show("Esta corriendo el proceso "+ item.ToString());
+
+            delegadoaux MD2 = new delegadoaux(Actualizar2);
+            this.Invoke(MD2, new object[] { item });
+
+
+            mut1.ReleaseMutex();
+        }
+
+        public void Actualizar2(object item)
+        {
+            string[] subs = item.ToString().Split(';');
+            dgvRunning.Rows.Add(subs);
+
+            if (dataGridView3.RowCount > 0)
+            {
+
+                string[] auxProceso = item.ToString().Split(';');
+
+                foreach (DataGridViewRow Row in dataGridView3.Rows)
+                {
+                    String strFila = Row.Index.ToString();
+                    string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn7"].Value);
+
+                    if (Valor == auxProceso[1])
+                    {
+                        dataGridView3.Rows.RemoveAt(Convert.ToInt32(strFila));
+                    }
+                }
+
+            }
+        }
+
+
+        private void dgvRunning_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
