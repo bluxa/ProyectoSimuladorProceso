@@ -22,6 +22,9 @@ namespace ProyectoSimuladorProceso
 
         delegate void delegado(object valor);
         delegate void delegadoaux(object valor,int i);
+
+        delegate void delegadoWait(object valor);
+
         public Form1()
         {
             InitializeComponent();
@@ -133,6 +136,7 @@ namespace ProyectoSimuladorProceso
 
                 delegado MD = new delegado(Actualizar1);
                 this.Invoke(MD, new object[] { item });
+           
 
                 mut.ReleaseMutex();
 
@@ -145,6 +149,14 @@ namespace ProyectoSimuladorProceso
         {
             string[] subs = item.ToString().Split(';');
             dvgReady.Rows.Add(subs);
+
+            //HISTORIAL DE READY
+            Nodo indice;
+
+            for (indice = readyCola.Primero; indice != null; indice = indice.Siguiente)
+            {
+                lstColaReady.Items.Add(indice.Dato.ToString());
+            }
 
             if (dgvNew.RowCount > 0)
             {
@@ -240,11 +252,42 @@ namespace ProyectoSimuladorProceso
         {
             mut2.WaitOne();
 
-            Thread.Sleep(300);
-      
-            metodo(waitingCola.Pop());
+            object auxItem = waitingCola.Pop();
+
+            //Thread.Sleep(3000);
+            delegadoWait MD1 = new delegadoWait(ActualizarTablaWaiting);
+            Thread.Sleep(3000);
+            this.Invoke(MD1, new object[] { auxItem });
+
+            
+
+            metodo(auxItem);
+
+            //ELIMINAR DE LA TABLA WAITING
+            
+
 
             mut2.ReleaseMutex();
+        }
+
+        public void ActualizarTablaWaiting(object item)
+        {
+            if (dvgWaiting.RowCount > 0 && item!=null)
+            {
+
+                string[] auxProceso = item.ToString().Split(';');
+
+                foreach (DataGridViewRow Row in dvgWaiting.Rows)
+                {
+                    String strFila = Row.Index.ToString();
+                    string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn17"].Value);
+
+                    if (Valor == auxProceso[1])
+                    {
+                        dvgWaiting.Rows.RemoveAt(Convert.ToInt32(strFila));
+                    }
+                }
+            }
         }
 
         public string obtenerDatoProceso(object item, int i)

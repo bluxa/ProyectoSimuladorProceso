@@ -87,6 +87,7 @@
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
+            this.lstColaReady = new System.Windows.Forms.ListBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaProceso)).BeginInit();
             this.panel1.SuspendLayout();
@@ -384,7 +385,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(329, 433);
+            this.label8.Location = new System.Drawing.Point(395, 433);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 19);
             this.label8.TabIndex = 12;
@@ -399,9 +400,9 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
-            this.dvgReady.Location = new System.Drawing.Point(98, 455);
+            this.dvgReady.Location = new System.Drawing.Point(164, 455);
             this.dvgReady.Name = "dvgReady";
-            this.dvgReady.Size = new System.Drawing.Size(548, 104);
+            this.dvgReady.Size = new System.Drawing.Size(548, 175);
             this.dvgReady.TabIndex = 13;
             // 
             // dataGridViewTextBoxColumn6
@@ -440,7 +441,7 @@
             this.dataGridViewTextBoxColumn15});
             this.dgvRunning.Location = new System.Drawing.Point(808, 455);
             this.dgvRunning.Name = "dgvRunning";
-            this.dgvRunning.Size = new System.Drawing.Size(548, 104);
+            this.dgvRunning.Size = new System.Drawing.Size(548, 175);
             this.dgvRunning.TabIndex = 14;
             this.dgvRunning.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRunning_CellContentClick);
             // 
@@ -488,9 +489,9 @@
             this.dataGridViewTextBoxColumn18,
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20});
-            this.dvgWaiting.Location = new System.Drawing.Point(276, 591);
+            this.dvgWaiting.Location = new System.Drawing.Point(164, 680);
             this.dvgWaiting.Name = "dvgWaiting";
-            this.dvgWaiting.Size = new System.Drawing.Size(548, 104);
+            this.dvgWaiting.Size = new System.Drawing.Size(548, 166);
             this.dvgWaiting.TabIndex = 16;
             // 
             // dataGridViewTextBoxColumn16
@@ -522,7 +523,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(473, 569);
+            this.label10.Location = new System.Drawing.Point(361, 658);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(118, 19);
             this.label10.TabIndex = 17;
@@ -537,9 +538,9 @@
             this.dataGridViewTextBoxColumn23,
             this.dataGridViewTextBoxColumn24,
             this.dataGridViewTextBoxColumn25});
-            this.dgvFinalizado.Location = new System.Drawing.Point(883, 591);
+            this.dgvFinalizado.Location = new System.Drawing.Point(808, 680);
             this.dgvFinalizado.Name = "dgvFinalizado";
-            this.dgvFinalizado.Size = new System.Drawing.Size(548, 104);
+            this.dgvFinalizado.Size = new System.Drawing.Size(548, 178);
             this.dgvFinalizado.TabIndex = 18;
             // 
             // dataGridViewTextBoxColumn21
@@ -571,11 +572,19 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1072, 569);
+            this.label11.Location = new System.Drawing.Point(1045, 658);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 19);
             this.label11.TabIndex = 19;
             this.label11.Text = "Finalizado";
+            // 
+            // lstColaReady
+            // 
+            this.lstColaReady.FormattingEnabled = true;
+            this.lstColaReady.Location = new System.Drawing.Point(6, 455);
+            this.lstColaReady.Name = "lstColaReady";
+            this.lstColaReady.Size = new System.Drawing.Size(143, 173);
+            this.lstColaReady.TabIndex = 20;
             // 
             // Form1
             // 
@@ -584,6 +593,7 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1050, 448);
+            this.Controls.Add(this.lstColaReady);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dgvFinalizado);
             this.Controls.Add(this.label10);
@@ -678,6 +688,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ListBox lstColaReady;
     }
 }
 
