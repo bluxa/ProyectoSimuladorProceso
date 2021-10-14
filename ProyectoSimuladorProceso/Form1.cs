@@ -20,7 +20,7 @@ namespace ProyectoSimuladorProceso
         private static Mutex mut1 = new Mutex();
 
         delegate void delegado(object valor);
-        delegate void delegadoaux(object valor);
+        delegate void delegadoaux(object valor,int i);
         public Form1()
         {
             InitializeComponent();
@@ -139,7 +139,7 @@ namespace ProyectoSimuladorProceso
         public void Actualizar1(object item)
         {
             string[] subs = item.ToString().Split(';');
-            dataGridView3.Rows.Add(subs);
+            dvgReady.Rows.Add(subs);
 
             if (dgvNew.RowCount > 0)
             {
@@ -182,14 +182,18 @@ namespace ProyectoSimuladorProceso
                 runningCola.Push(item);
 
 
-                Thread.Sleep(valor);
+                Thread.Sleep(valor*10);
 
                 delegadoaux MD2 = new delegadoaux(Actualizar2);
-                this.Invoke(MD2, new object[] { item });
+                this.Invoke(MD2, new object[] { item,0 });
 
                 //Proceso finalizado
 
                 finalizadoCola.Push(runningCola.Pop());
+
+                delegadoaux M = new delegadoaux(Actualizar2);
+                this.Invoke(M, new object[] { item,1 });
+
 
                 mut1.ReleaseMutex();
 
@@ -199,18 +203,23 @@ namespace ProyectoSimuladorProceso
             else
             {
                 runningCola.Push(item);
-                Thread.Sleep(valor);
+                Thread.Sleep(valor*10);
 
                 delegadoaux MD2 = new delegadoaux(Actualizar2);
-                this.Invoke(MD2, new object[] { item });
+                this.Invoke(MD2, new object[] { item,0});
 
                 //Actulizar a la espera
                 ClsProceso nuevo = new ClsProceso();
                 nuevo.tiempoQuantum(item,35);
 
-                // MessageBox.Show("" + item.ToString()); ;
                 runningCola.Pop();
                 waitingCola.Push(item);
+
+                delegadoaux MD1 = new delegadoaux(Actualizar2);
+                this.Invoke(MD1, new object[] { item, 2 });
+
+                // MessageBox.Show("" + item.ToString()); ;
+       
 
                 mut1.ReleaseMutex();
             }
@@ -226,28 +235,79 @@ namespace ProyectoSimuladorProceso
             return subs[i];
         }
 
-        public void Actualizar2(object item)
+        public void Actualizar2(object item,int opcion)
         {
             string[] subs = item.ToString().Split(';');
-            dgvRunning.Rows.Add(subs);
 
-            if (dataGridView3.RowCount > 0)
+
+            if (opcion == 1)
             {
+                dgvFinalizado.Rows.Add(subs);
 
-                string[] auxProceso = item.ToString().Split(';');
-
-                foreach (DataGridViewRow Row in dataGridView3.Rows)
+                if (dgvRunning.RowCount > 0)
                 {
-                    String strFila = Row.Index.ToString();
-                    string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn7"].Value);
 
-                    if (Valor == auxProceso[1])
+                    string[] auxProceso = item.ToString().Split(';');
+
+                    foreach (DataGridViewRow Row in dgvRunning.Rows)
                     {
-                        dataGridView3.Rows.RemoveAt(Convert.ToInt32(strFila));
+                        String strFila = Row.Index.ToString();
+                        string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn12"].Value);
+
+                        if (Valor == auxProceso[1])
+                        {
+                            dgvRunning.Rows.RemoveAt(Convert.ToInt32(strFila));
+                        }
+                    }
+                }
+            }
+
+            else if (opcion == 2)
+            {
+                dvgWaiting.Rows.Add(subs);
+
+                if (dgvRunning.RowCount > 0)
+                {
+
+                    string[] auxProceso = item.ToString().Split(';');
+
+                    foreach (DataGridViewRow Row in dgvRunning.Rows)
+                    {
+                        String strFila = Row.Index.ToString();
+                        string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn12"].Value);
+
+                        if (Valor == auxProceso[1])
+                        {
+                            dgvRunning.Rows.RemoveAt(Convert.ToInt32(strFila));
+                        }
+                    }
+                }
+            }
+
+            else if (opcion == 0)
+            {
+                dgvRunning.Rows.Add(subs);
+
+                if (dvgReady.RowCount > 0)
+                {
+
+                    string[] auxProceso = item.ToString().Split(';');
+
+                    foreach (DataGridViewRow Row in dvgReady.Rows)
+                    {
+                        String strFila = Row.Index.ToString();
+                        string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn7"].Value);
+
+                        if (Valor == auxProceso[1])
+                        {
+                            dvgReady.Rows.RemoveAt(Convert.ToInt32(strFila));
+                        }
                     }
                 }
 
             }
+
+
         }
 
 
