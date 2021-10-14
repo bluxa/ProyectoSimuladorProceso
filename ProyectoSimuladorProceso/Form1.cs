@@ -18,6 +18,7 @@ namespace ProyectoSimuladorProceso
         private static Mutex mut = new Mutex();
 
         private static Mutex mut1 = new Mutex();
+        private static Mutex mut2 = new Mutex();
 
         delegate void delegado(object valor);
         delegate void delegadoaux(object valor,int i);
@@ -121,19 +122,23 @@ namespace ProyectoSimuladorProceso
 
         public void metodo(object item)
         {
-            mut.WaitOne();
-            
-            Thread.Sleep(4000);
+            if (item != null)
+            {
+                mut.WaitOne();
 
-            
-            readyCola.Push(item);  // 15) impresa   15) navegador 15) java
+                Thread.Sleep(4000);
 
-            delegado MD = new delegado(Actualizar1);
-            this.Invoke(MD, new object[] { item });     
-            
-            mut.ReleaseMutex();
 
-            runningHilo();
+                readyCola.Push(item);  // 15) impresa   15) navegador 15) java
+
+                delegado MD = new delegado(Actualizar1);
+                this.Invoke(MD, new object[] { item });
+
+                mut.ReleaseMutex();
+
+                runningHilo();
+            }
+           
         }
 
         public void Actualizar1(object item)
@@ -194,7 +199,6 @@ namespace ProyectoSimuladorProceso
                 delegadoaux M = new delegadoaux(Actualizar2);
                 this.Invoke(M, new object[] { item,1 });
 
-
                 mut1.ReleaseMutex();
 
             }
@@ -218,15 +222,29 @@ namespace ProyectoSimuladorProceso
                 delegadoaux MD1 = new delegadoaux(Actualizar2);
                 this.Invoke(MD1, new object[] { item, 2 });
 
-                // MessageBox.Show("" + item.ToString()); ;
-       
-
+                // MessageBox.Show("" + item.ToString()); 
                 mut1.ReleaseMutex();
+
+
             }
 
-   
-
+                
+            if (waitingCola.NumeroElementos>0)
+            {
+                waitingHilo();
+            }
          
+        }
+
+        public void waitingHilo() 
+        {
+            mut2.WaitOne();
+
+            Thread.Sleep(300);
+      
+            metodo(waitingCola.Pop());
+
+            mut2.ReleaseMutex();
         }
 
         public string obtenerDatoProceso(object item, int i)

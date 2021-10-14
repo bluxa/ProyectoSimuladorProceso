@@ -44,6 +44,7 @@ namespace ProyectoSimuladorProceso.Cola
                 if (NumeroElementos == 1)
                 {
                     BorrarCola();
+                    NumeroElementos--;
                 }
                 else
                 {
