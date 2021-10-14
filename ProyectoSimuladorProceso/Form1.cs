@@ -363,8 +363,13 @@ namespace ProyectoSimuladorProceso
                 chart1.Series.Clear();
                 chart1.Titles.Clear();
 
+                chart2.Series.Clear();
+                //chart2.Titles.Clear();
+
+                
                 graficaCpu(Convert.ToInt32(obtenerDatoProceso(item, 4)));
 
+                graficaMemoria(float.Parse(obtenerDatoProceso(item, 3)));
 
                 if (dvgReady.RowCount > 0)
                 {
@@ -388,21 +393,43 @@ namespace ProyectoSimuladorProceso
 
         }
 
-        string[] series = { "CPU", "CPU en uso" };
-        
+        string[] seriesCpu = { "CPU", "CPU en uso"};
+        string[] seriesMemoria = { "MEMORIA", "memoria en uso" };
+
+        public void graficaMemoria(float memoria)
+        {
+            float[] puntos = { 4, memoria };
+
+            chart2.Palette = ChartColorPalette.Pastel;
+            chart2.Titles.Add("Porcentaje Memoria " + memoria);
+
+
+            for (int i = 0; i < seriesMemoria.Length; i++)
+            {
+                Series serie = chart2.Series.Add(seriesMemoria[i]);
+                serie.ChartType = SeriesChartType.Pie;
+
+                //serie.Label = puntos[i].ToString();
+                //.Label = "Memoria Consumida "+memoria;
+
+                //serie.Points.Add(puntos[i]);
+
+                serie.Points.AddXY("Memoria utilizado ",memoria);
+                serie.Points.AddXY("Memoria total 4", 4);
+
+            }
+        }
+
         public void graficaCpu(int porcentaCPU)
         {
             int[] puntos = { 100, porcentaCPU };
 
             chart1.Palette = ChartColorPalette.Pastel;
-
             chart1.Titles.Add("Porcentaje CPU "+porcentaCPU);
 
-
-
-            for (int i = 0; i < series.Length; i++)
+            for (int i = 0; i < seriesCpu.Length; i++)
             {
-                Series serie = chart1.Series.Add(series[i]);
+                Series serie = chart1.Series.Add(seriesCpu[i]);
 
                 serie.Label = puntos[i].ToString();
                 serie.Points.Add(puntos[i]);
