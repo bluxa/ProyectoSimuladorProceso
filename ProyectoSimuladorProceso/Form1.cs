@@ -81,6 +81,8 @@ namespace ProyectoSimuladorProceso
         Cola.Cola miColaProceso = new Cola.Cola();
         Cola.Cola readyCola = new Cola.Cola();
         Cola.Cola runningCola = new Cola.Cola();
+        Cola.Cola finalizadoCola = new Cola.Cola();
+        Cola.Cola waitingCola = new Cola.Cola();
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
@@ -116,15 +118,15 @@ namespace ProyectoSimuladorProceso
                 new Thread(metodo).Start(item);
             }  // running
         }
+
         public void metodo(object item)
         {
             mut.WaitOne();
             
             Thread.Sleep(4000);
+
             
             readyCola.Push(item);  // 15) impresa   15) navegador 15) java
-            // Running
-            // impresora 60S ejecucion
 
             delegado MD = new delegado(Actualizar1);
             this.Invoke(MD, new object[] { item });     
@@ -168,18 +170,60 @@ namespace ProyectoSimuladorProceso
             mut1.WaitOne();
 
             ClsProceso item;
-            item = (ClsProceso)readyCola.Pop();                    
+            item = (ClsProceso)readyCola.Pop();
 
-            Thread.Sleep(4000);
-
-            runningCola.Push(item);
-          //  MessageBox.Show("Esta corriendo el proceso "+ item.ToString());
-
-            delegadoaux MD2 = new delegadoaux(Actualizar2);
-            this.Invoke(MD2, new object[] { item });
+            //Obtiene el tiempo asignado
+            int valor = int.Parse(obtenerDatoProceso(item, 2));
 
 
-            mut1.ReleaseMutex();
+            //  Si el tiempo es Quantum < 1 minuto pasan a finaliza el hilo
+            if (valor< 60)
+            {
+                runningCola.Push(item);
+
+
+                Thread.Sleep(valor);
+
+                delegadoaux MD2 = new delegadoaux(Actualizar2);
+                this.Invoke(MD2, new object[] { item });
+
+                //Proceso finalizado
+
+                finalizadoCola.Push(runningCola.Pop());
+
+                mut1.ReleaseMutex();
+
+            }
+
+            // Si el tiempo es Quantum > 1 minuto pasan a Waiting 
+            else
+            {
+                runningCola.Push(item);
+                Thread.Sleep(valor);
+
+                delegadoaux MD2 = new delegadoaux(Actualizar2);
+                this.Invoke(MD2, new object[] { item });
+
+                //Actulizar a la espera
+                ClsProceso nuevo = new ClsProceso();
+                nuevo.tiempoQuantum(item,35);
+
+                // MessageBox.Show("" + item.ToString()); ;
+                runningCola.Pop();
+                waitingCola.Push(item);
+
+                mut1.ReleaseMutex();
+            }
+
+   
+
+         
+        }
+
+        public string obtenerDatoProceso(object item, int i)
+        {
+            string[] subs = item.ToString().Split(';');
+            return subs[i];
         }
 
         public void Actualizar2(object item)

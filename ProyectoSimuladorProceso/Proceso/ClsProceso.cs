@@ -25,6 +25,13 @@ namespace ProyectoSimuladorProceso.Proceso
 
         public ClsProceso()
         {
+          
+        }
+
+        public void tiempoQuantum(object a ,int valor) 
+        {
+            ClsProceso aux = (ClsProceso)a;
+            aux.quantumProceso = valor;
         }
 
 
