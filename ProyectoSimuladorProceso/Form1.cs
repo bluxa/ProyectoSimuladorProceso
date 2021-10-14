@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using ProyectoSimuladorProceso.Archivo;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace ProyectoSimuladorProceso
 {
@@ -42,6 +43,7 @@ namespace ProyectoSimuladorProceso
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        int idProceso = 1;
 
         private void cmbTipoProceso_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -52,32 +54,32 @@ namespace ProyectoSimuladorProceso
                 case 0:
                     txtQuantum.Text = "60";
                     txtMemoria.Text = "0.0005";
-                    txtCpu.Text = "10%";
+                    txtCpu.Text = "10";
                     break;
                 case 1:
                     txtQuantum.Text = "45";
                     txtMemoria.Text = "0.01";
-                    txtCpu.Text = "20%";
+                    txtCpu.Text = "20";
                     break;
                 case 2:
                     txtQuantum.Text = "30";
                     txtMemoria.Text = "0.05";
-                    txtCpu.Text = "30%";
+                    txtCpu.Text = "30";
                     break;
                 case 3:
                     txtQuantum.Text = "120";
                     txtMemoria.Text = "1";
-                    txtCpu.Text = "70%";
+                    txtCpu.Text = "70";
                     break;
                 case 4:
                     txtQuantum.Text = "30";
                     txtMemoria.Text = "0.256";
-                    txtCpu.Text = "50%";
+                    txtCpu.Text = "50";
                     break;
                 case 5:
                     txtQuantum.Text = "120";
                     txtMemoria.Text = "2";
-                    txtCpu.Text = "85%";
+                    txtCpu.Text = "85";
                     break;
                 default:
                     break;
@@ -90,11 +92,12 @@ namespace ProyectoSimuladorProceso
         Cola.Cola runningCola = new Cola.Cola();
         Cola.Cola finalizadoCola = new Cola.Cola();
         Cola.Cola waitingCola = new Cola.Cola();
+        
 
         private void btnAceptar_Click(object sender, EventArgs e)
         {
-            ClsProceso nuevoProceso = new ClsProceso(1,cmbTipoProceso.SelectedItem.ToString(),
-            Convert.ToInt32(txtQuantum.Text),float.Parse(txtMemoria.Text),8);
+            ClsProceso nuevoProceso = new ClsProceso(idProceso++,cmbTipoProceso.SelectedItem.ToString(),
+            Convert.ToInt32(txtQuantum.Text),float.Parse(txtMemoria.Text), Convert.ToInt32(txtCpu.Text));
     
             miColaProceso.Push(nuevoProceso);
 
@@ -197,12 +200,12 @@ namespace ProyectoSimuladorProceso
 
 
             //  Si el tiempo es Quantum < 1 minuto pasan a finaliza el hilo
-            if (valor< 60)
+            if (valor <= 60)
             {
                 runningCola.Push(item);
 
 
-                Thread.Sleep(valor*10);
+                Thread.Sleep(valor*100);
 
                 delegadoaux MD2 = new delegadoaux(Actualizar2);
                 this.Invoke(MD2, new object[] { item,0 });
@@ -222,14 +225,16 @@ namespace ProyectoSimuladorProceso
             else
             {
                 runningCola.Push(item);
-                Thread.Sleep(valor*10);
+
+                Thread.Sleep((valor/2)*100);
+                //MessageBox.Show("Valor Sleep:  "+ valor / 2);
 
                 delegadoaux MD2 = new delegadoaux(Actualizar2);
                 this.Invoke(MD2, new object[] { item,0});
 
                 //Actulizar a la espera
                 ClsProceso nuevo = new ClsProceso();
-                nuevo.tiempoQuantum(item,35);
+                nuevo.tiempoQuantum(item,valor/2);
 
                 runningCola.Pop();
                 waitingCola.Push(item);
@@ -355,6 +360,12 @@ namespace ProyectoSimuladorProceso
             {
                 dgvRunning.Rows.Add(subs);
 
+                chart1.Series.Clear();
+                chart1.Titles.Clear();
+
+                graficaCpu(Convert.ToInt32(obtenerDatoProceso(item, 4)));
+
+
                 if (dvgReady.RowCount > 0)
                 {
 
@@ -377,6 +388,26 @@ namespace ProyectoSimuladorProceso
 
         }
 
+        string[] series = { "CPU", "CPU en uso" };
+        
+        public void graficaCpu(int porcentaCPU)
+        {
+            int[] puntos = { 100, porcentaCPU };
+
+            chart1.Palette = ChartColorPalette.Pastel;
+
+            chart1.Titles.Add("Porcentaje CPU "+porcentaCPU);
+
+
+
+            for (int i = 0; i < series.Length; i++)
+            {
+                Series serie = chart1.Series.Add(series[i]);
+
+                serie.Label = puntos[i].ToString();
+                serie.Points.Add(puntos[i]);
+            }
+        }
 
         private void dgvRunning_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
