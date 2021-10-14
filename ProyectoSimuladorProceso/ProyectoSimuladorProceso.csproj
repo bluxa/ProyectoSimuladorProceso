@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Archivo\Log.cs" />
     <Compile Include="Cola\Cola.cs" />
     <Compile Include="Cola\Nodo.cs" />
     <Compile Include="Form1.cs">

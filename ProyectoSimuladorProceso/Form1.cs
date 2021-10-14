@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using ProyectoSimuladorProceso.Archivo;
 
 namespace ProyectoSimuladorProceso
 {
@@ -24,6 +25,8 @@ namespace ProyectoSimuladorProceso
         delegate void delegadoaux(object valor,int i);
 
         delegate void delegadoWait(object valor);
+
+        Log ArchivoLogFinalizado = new Log(@"ProcesosTerminados");
 
         public Form1()
         {
@@ -304,6 +307,9 @@ namespace ProyectoSimuladorProceso
             if (opcion == 1)
             {
                 dgvFinalizado.Rows.Add(subs);
+
+             
+                ArchivoLogFinalizado.Agregar("→" + item.ToString());
 
                 if (dgvRunning.RowCount > 0)
                 {
