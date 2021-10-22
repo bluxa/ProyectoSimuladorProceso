@@ -29,11 +29,11 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAuxiliar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -134,22 +134,28 @@
             // 
             // btnAuxiliar
             // 
+            this.btnAuxiliar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
+            this.btnAuxiliar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAuxiliar.ForeColor = System.Drawing.Color.White;
             this.btnAuxiliar.Location = new System.Drawing.Point(431, 303);
             this.btnAuxiliar.Name = "btnAuxiliar";
-            this.btnAuxiliar.Size = new System.Drawing.Size(81, 26);
+            this.btnAuxiliar.Size = new System.Drawing.Size(91, 34);
             this.btnAuxiliar.TabIndex = 8;
             this.btnAuxiliar.Text = "Iniciar";
-            this.btnAuxiliar.UseVisualStyleBackColor = true;
+            this.btnAuxiliar.UseVisualStyleBackColor = false;
             this.btnAuxiliar.Click += new System.EventHandler(this.btnAuxiliar_Click);
             // 
             // btnAceptar
             // 
-            this.btnAceptar.Location = new System.Drawing.Point(56, 303);
+            this.btnAceptar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
+            this.btnAceptar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAceptar.ForeColor = System.Drawing.Color.White;
+            this.btnAceptar.Location = new System.Drawing.Point(77, 303);
             this.btnAceptar.Name = "btnAceptar";
-            this.btnAceptar.Size = new System.Drawing.Size(81, 26);
+            this.btnAceptar.Size = new System.Drawing.Size(87, 34);
             this.btnAceptar.TabIndex = 2;
             this.btnAceptar.Text = "Aceptar";
-            this.btnAceptar.UseVisualStyleBackColor = true;
+            this.btnAceptar.UseVisualStyleBackColor = false;
             this.btnAceptar.Click += new System.EventHandler(this.btnAceptar_Click);
             // 
             // txtCpu
@@ -191,7 +197,10 @@
             // 
             // dgvColaProceso
             // 
+            this.dgvColaProceso.AllowUserToAddRows = false;
+            this.dgvColaProceso.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvColaProceso.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvColaProceso.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
             this.dgvColaProceso.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvColaProceso.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
@@ -290,7 +299,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.picMinimizar);
             this.panel1.Controls.Add(this.picRestaurar);
@@ -304,7 +313,8 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Times New Roman", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(405, 12);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(498, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(500, 24);
             this.label1.TabIndex = 2;
@@ -312,6 +322,7 @@
             // 
             // picMinimizar
             // 
+            this.picMinimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
             this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
             this.picMinimizar.Location = new System.Drawing.Point(1238, 10);
             this.picMinimizar.Name = "picMinimizar";
@@ -343,6 +354,9 @@
             // 
             // dgvNew
             // 
+            this.dgvNew.AllowUserToAddRows = false;
+            this.dgvNew.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvNew.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvNew.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNew.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -394,7 +408,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(395, 433);
+            this.label8.Location = new System.Drawing.Point(439, 433);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 19);
             this.label8.TabIndex = 12;
@@ -402,6 +416,9 @@
             // 
             // dvgReady
             // 
+            this.dvgReady.AllowUserToAddRows = false;
+            this.dvgReady.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dvgReady.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dvgReady.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgReady.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
@@ -409,7 +426,7 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
-            this.dvgReady.Location = new System.Drawing.Point(164, 455);
+            this.dvgReady.Location = new System.Drawing.Point(216, 455);
             this.dvgReady.Name = "dvgReady";
             this.dvgReady.Size = new System.Drawing.Size(548, 175);
             this.dvgReady.TabIndex = 13;
@@ -441,6 +458,9 @@
             // 
             // dgvRunning
             // 
+            this.dgvRunning.AllowUserToAddRows = false;
+            this.dgvRunning.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvRunning.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRunning.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRunning.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn11,
@@ -448,7 +468,7 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15});
-            this.dgvRunning.Location = new System.Drawing.Point(808, 455);
+            this.dgvRunning.Location = new System.Drawing.Point(794, 455);
             this.dgvRunning.Name = "dgvRunning";
             this.dgvRunning.Size = new System.Drawing.Size(548, 175);
             this.dgvRunning.TabIndex = 14;
@@ -491,6 +511,9 @@
             // 
             // dvgWaiting
             // 
+            this.dvgWaiting.AllowUserToAddRows = false;
+            this.dvgWaiting.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dvgWaiting.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dvgWaiting.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dvgWaiting.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn16,
@@ -498,7 +521,7 @@
             this.dataGridViewTextBoxColumn18,
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20});
-            this.dvgWaiting.Location = new System.Drawing.Point(164, 680);
+            this.dvgWaiting.Location = new System.Drawing.Point(211, 680);
             this.dvgWaiting.Name = "dvgWaiting";
             this.dvgWaiting.Size = new System.Drawing.Size(548, 166);
             this.dvgWaiting.TabIndex = 16;
@@ -532,7 +555,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(361, 658);
+            this.label10.Location = new System.Drawing.Point(416, 658);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(118, 19);
             this.label10.TabIndex = 17;
@@ -540,6 +563,9 @@
             // 
             // dgvFinalizado
             // 
+            this.dgvFinalizado.AllowUserToAddRows = false;
+            this.dgvFinalizado.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvFinalizado.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvFinalizado.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvFinalizado.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn21,
@@ -590,18 +616,18 @@
             // lstColaReady
             // 
             this.lstColaReady.FormattingEnabled = true;
-            this.lstColaReady.Location = new System.Drawing.Point(6, 455);
+            this.lstColaReady.Location = new System.Drawing.Point(33, 455);
             this.lstColaReady.Name = "lstColaReady";
             this.lstColaReady.Size = new System.Drawing.Size(143, 173);
             this.lstColaReady.TabIndex = 20;
             // 
             // chart1
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(718, 583);
+            chartArea3.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea3);
+            legend3.Name = "Legend1";
+            this.chart1.Legends.Add(legend3);
+            this.chart1.Location = new System.Drawing.Point(990, 883);
             this.chart1.Name = "chart1";
             this.chart1.Size = new System.Drawing.Size(299, 300);
             this.chart1.TabIndex = 21;
@@ -609,18 +635,18 @@
             // 
             // chart2
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart2.Legends.Add(legend2);
-            this.chart2.Location = new System.Drawing.Point(29, 694);
+            chartArea4.Name = "ChartArea1";
+            this.chart2.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart2.Legends.Add(legend4);
+            this.chart2.Location = new System.Drawing.Point(605, 883);
             this.chart2.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            series1.YValuesPerPoint = 4;
-            this.chart2.Series.Add(series1);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.Legend = "Legend1";
+            series2.Name = "Series1";
+            series2.YValuesPerPoint = 4;
+            this.chart2.Series.Add(series2);
             this.chart2.Size = new System.Drawing.Size(300, 300);
             this.chart2.TabIndex = 22;
             this.chart2.Text = "chart2";

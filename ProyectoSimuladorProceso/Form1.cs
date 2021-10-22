@@ -114,7 +114,7 @@ namespace ProyectoSimuladorProceso
             {
                 if (dgvColaProceso.RowCount > 0)
                 {
-                    MessageBox.Show("Moviendo a estado NEW " ,""+ dgvColaProceso.CurrentRow.Index, MessageBoxButtons.OK,MessageBoxIcon.Information);
+                    MessageBox.Show(" "+ dgvColaProceso.CurrentRow.Index);
                     dgvColaProceso.Rows.RemoveAt(dgvColaProceso.CurrentRow.Index);
                     
                 }
@@ -204,20 +204,32 @@ namespace ProyectoSimuladorProceso
             {
                 runningCola.Push(item);
 
-
-                Thread.Sleep(valor*100);
-
                 delegadoaux MD2 = new delegadoaux(Actualizar2);
-                this.Invoke(MD2, new object[] { item,0 });
+                this.Invoke(MD2, new object[] { item, 0 });
 
-                //Proceso finalizado
+               var result = MessageBox.Show("Desea interumpir el proceso", "Mensaje", MessageBoxButtons.YesNo);
 
-                finalizadoCola.Push(runningCola.Pop());
-
-                delegadoaux M = new delegadoaux(Actualizar2);
-                this.Invoke(M, new object[] { item,1 });
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    MessageBox.Show("Se interumpe");
+                    //readyCola.Push();
+                   
+                    delegadoaux MD3 = new delegadoaux(Actualizar2);
+                    this.Invoke(MD3, new object[] { item, 3 });
+                  
+                    metodo(runningCola.Pop());
+                }
+                else
+                {
+                    finalizadoCola.Push(runningCola.Pop());
+                    delegadoaux M = new delegadoaux(Actualizar2);
+                    this.Invoke(M, new object[] { item, 1 });
+                    Thread.Sleep(valor * 100);
+                }
+                //Proceso finalizad
 
                 mut1.ReleaseMutex();
+               // runningHilo();
 
             }
 
@@ -356,6 +368,27 @@ namespace ProyectoSimuladorProceso
                 }
             }
 
+            else if (opcion == 3)
+            {
+                if (dgvRunning.RowCount > 0)
+                {
+
+                    string[] auxProceso = item.ToString().Split(';');
+
+                    foreach (DataGridViewRow Row in dgvRunning.Rows)
+                    {
+                        String strFila = Row.Index.ToString();
+                        string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn12"].Value);
+
+                        if (Valor == auxProceso[1])
+                        {
+                            dgvRunning.Rows.RemoveAt(Convert.ToInt32(strFila));
+                        }
+                    }
+                }
+            }
+
+
             else if (opcion == 0)
             {
                 dgvRunning.Rows.Add(subs);
@@ -437,6 +470,11 @@ namespace ProyectoSimuladorProceso
         }
 
         private void dgvRunning_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
 
         }
