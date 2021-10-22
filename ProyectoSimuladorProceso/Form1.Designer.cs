@@ -28,12 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAuxiliar = new System.Windows.Forms.Button();
             this.btnAceptar = new System.Windows.Forms.Button();
@@ -54,9 +48,6 @@
             this.cmbTipoProceso = new System.Windows.Forms.ComboBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.picMinimizar = new System.Windows.Forms.PictureBox();
-            this.picRestaurar = new System.Windows.Forms.PictureBox();
-            this.picCerrar = new System.Windows.Forms.PictureBox();
             this.dgvNew = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -65,7 +56,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.dvgReady = new System.Windows.Forms.DataGridView();
+            this.dgvReady = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -92,22 +83,14 @@
             this.dataGridViewTextBoxColumn24 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn25 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label11 = new System.Windows.Forms.Label();
-            this.lstColaReady = new System.Windows.Forms.ListBox();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.chart2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaProceso)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNew)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgReady)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReady)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgWaiting)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinalizado)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -230,12 +213,12 @@
             // 
             // Memoria
             // 
-            this.Memoria.HeaderText = "Memoria";
+            this.Memoria.HeaderText = "Memoria (Gb)";
             this.Memoria.Name = "Memoria";
             // 
             // Cpu
             // 
-            this.Cpu.HeaderText = "Uso del CPU";
+            this.Cpu.HeaderText = "Uso del CPU (%)";
             this.Cpu.Name = "Cpu";
             // 
             // label5
@@ -301,9 +284,6 @@
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(37)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.picMinimizar);
-            this.panel1.Controls.Add(this.picRestaurar);
-            this.panel1.Controls.Add(this.picCerrar);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1368, 51);
@@ -319,38 +299,6 @@
             this.label1.Size = new System.Drawing.Size(500, 24);
             this.label1.TabIndex = 2;
             this.label1.Text = "SIMULADOR CICLO DE VIDA DE LOS PROCESOS";
-            // 
-            // picMinimizar
-            // 
-            this.picMinimizar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(77)))), ((int)(((byte)(139)))));
-            this.picMinimizar.Image = ((System.Drawing.Image)(resources.GetObject("picMinimizar.Image")));
-            this.picMinimizar.Location = new System.Drawing.Point(1238, 10);
-            this.picMinimizar.Name = "picMinimizar";
-            this.picMinimizar.Size = new System.Drawing.Size(24, 24);
-            this.picMinimizar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picMinimizar.TabIndex = 2;
-            this.picMinimizar.TabStop = false;
-            this.picMinimizar.Click += new System.EventHandler(this.picMinimizar_Click);
-            // 
-            // picRestaurar
-            // 
-            this.picRestaurar.Image = ((System.Drawing.Image)(resources.GetObject("picRestaurar.Image")));
-            this.picRestaurar.Location = new System.Drawing.Point(1281, 10);
-            this.picRestaurar.Name = "picRestaurar";
-            this.picRestaurar.Size = new System.Drawing.Size(24, 24);
-            this.picRestaurar.TabIndex = 2;
-            this.picRestaurar.TabStop = false;
-            // 
-            // picCerrar
-            // 
-            this.picCerrar.Image = ((System.Drawing.Image)(resources.GetObject("picCerrar.Image")));
-            this.picCerrar.Location = new System.Drawing.Point(1324, 10);
-            this.picCerrar.Name = "picCerrar";
-            this.picCerrar.Size = new System.Drawing.Size(24, 24);
-            this.picCerrar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.picCerrar.TabIndex = 2;
-            this.picCerrar.TabStop = false;
-            this.picCerrar.Click += new System.EventHandler(this.picCerrar_Click);
             // 
             // dgvNew
             // 
@@ -386,12 +334,12 @@
             // 
             // dataGridViewTextBoxColumn4
             // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Memoria (Gb)";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             // 
             // dataGridViewTextBoxColumn5
             // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Uso del CPU (%)";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             // 
             // label7
@@ -408,28 +356,28 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(439, 433);
+            this.label8.Location = new System.Drawing.Point(264, 433);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(112, 19);
             this.label8.TabIndex = 12;
             this.label8.Text = "En estado Ready";
             // 
-            // dvgReady
+            // dgvReady
             // 
-            this.dvgReady.AllowUserToAddRows = false;
-            this.dvgReady.BackgroundColor = System.Drawing.SystemColors.Control;
-            this.dvgReady.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dvgReady.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dvgReady.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvReady.AllowUserToAddRows = false;
+            this.dgvReady.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.dgvReady.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvReady.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvReady.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9,
             this.dataGridViewTextBoxColumn10});
-            this.dvgReady.Location = new System.Drawing.Point(216, 455);
-            this.dvgReady.Name = "dvgReady";
-            this.dvgReady.Size = new System.Drawing.Size(548, 175);
-            this.dvgReady.TabIndex = 13;
+            this.dgvReady.Location = new System.Drawing.Point(41, 455);
+            this.dgvReady.Name = "dgvReady";
+            this.dgvReady.Size = new System.Drawing.Size(548, 175);
+            this.dgvReady.TabIndex = 13;
             // 
             // dataGridViewTextBoxColumn6
             // 
@@ -448,12 +396,12 @@
             // 
             // dataGridViewTextBoxColumn9
             // 
-            this.dataGridViewTextBoxColumn9.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn9.HeaderText = "Memoria (Gb)";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             // 
             // dataGridViewTextBoxColumn10
             // 
-            this.dataGridViewTextBoxColumn10.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn10.HeaderText = "Uso del CPU (%)";
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             // 
             // dgvRunning
@@ -468,9 +416,9 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn14,
             this.dataGridViewTextBoxColumn15});
-            this.dgvRunning.Location = new System.Drawing.Point(794, 455);
+            this.dgvRunning.Location = new System.Drawing.Point(760, 455);
             this.dgvRunning.Name = "dgvRunning";
-            this.dgvRunning.Size = new System.Drawing.Size(548, 175);
+            this.dgvRunning.Size = new System.Drawing.Size(548, 101);
             this.dgvRunning.TabIndex = 14;
             this.dgvRunning.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRunning_CellContentClick);
             // 
@@ -491,19 +439,19 @@
             // 
             // dataGridViewTextBoxColumn14
             // 
-            this.dataGridViewTextBoxColumn14.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn14.HeaderText = "Memoria (Gb)";
             this.dataGridViewTextBoxColumn14.Name = "dataGridViewTextBoxColumn14";
             // 
             // dataGridViewTextBoxColumn15
             // 
-            this.dataGridViewTextBoxColumn15.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn15.HeaderText = "Uso del CPU (%)";
             this.dataGridViewTextBoxColumn15.Name = "dataGridViewTextBoxColumn15";
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(1007, 418);
+            this.label9.Location = new System.Drawing.Point(973, 418);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(121, 19);
             this.label9.TabIndex = 15;
@@ -521,7 +469,7 @@
             this.dataGridViewTextBoxColumn18,
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20});
-            this.dvgWaiting.Location = new System.Drawing.Point(211, 680);
+            this.dvgWaiting.Location = new System.Drawing.Point(41, 680);
             this.dvgWaiting.Name = "dvgWaiting";
             this.dvgWaiting.Size = new System.Drawing.Size(548, 166);
             this.dvgWaiting.TabIndex = 16;
@@ -543,19 +491,19 @@
             // 
             // dataGridViewTextBoxColumn19
             // 
-            this.dataGridViewTextBoxColumn19.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn19.HeaderText = "Memoria (Gb)";
             this.dataGridViewTextBoxColumn19.Name = "dataGridViewTextBoxColumn19";
             // 
             // dataGridViewTextBoxColumn20
             // 
-            this.dataGridViewTextBoxColumn20.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn20.HeaderText = "Uso del CPU (%)";
             this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(416, 658);
+            this.label10.Location = new System.Drawing.Point(246, 658);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(118, 19);
             this.label10.TabIndex = 17;
@@ -573,7 +521,7 @@
             this.dataGridViewTextBoxColumn23,
             this.dataGridViewTextBoxColumn24,
             this.dataGridViewTextBoxColumn25});
-            this.dgvFinalizado.Location = new System.Drawing.Point(808, 680);
+            this.dgvFinalizado.Location = new System.Drawing.Point(760, 658);
             this.dgvFinalizado.Name = "dgvFinalizado";
             this.dgvFinalizado.Size = new System.Drawing.Size(548, 178);
             this.dgvFinalizado.TabIndex = 18;
@@ -595,61 +543,23 @@
             // 
             // dataGridViewTextBoxColumn24
             // 
-            this.dataGridViewTextBoxColumn24.HeaderText = "Memoria";
+            this.dataGridViewTextBoxColumn24.HeaderText = "Memoria (Gb)";
             this.dataGridViewTextBoxColumn24.Name = "dataGridViewTextBoxColumn24";
             // 
             // dataGridViewTextBoxColumn25
             // 
-            this.dataGridViewTextBoxColumn25.HeaderText = "Uso del CPU";
+            this.dataGridViewTextBoxColumn25.HeaderText = "Uso del CPU (%)";
             this.dataGridViewTextBoxColumn25.Name = "dataGridViewTextBoxColumn25";
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(1045, 658);
+            this.label11.Location = new System.Drawing.Point(997, 636);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(70, 19);
             this.label11.TabIndex = 19;
             this.label11.Text = "Finalizado";
-            // 
-            // lstColaReady
-            // 
-            this.lstColaReady.FormattingEnabled = true;
-            this.lstColaReady.Location = new System.Drawing.Point(33, 455);
-            this.lstColaReady.Name = "lstColaReady";
-            this.lstColaReady.Size = new System.Drawing.Size(143, 173);
-            this.lstColaReady.TabIndex = 20;
-            // 
-            // chart1
-            // 
-            chartArea3.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chart1.Legends.Add(legend3);
-            this.chart1.Location = new System.Drawing.Point(990, 883);
-            this.chart1.Name = "chart1";
-            this.chart1.Size = new System.Drawing.Size(299, 300);
-            this.chart1.TabIndex = 21;
-            this.chart1.Text = "chart1";
-            // 
-            // chart2
-            // 
-            chartArea4.Name = "ChartArea1";
-            this.chart2.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart2.Legends.Add(legend4);
-            this.chart2.Location = new System.Drawing.Point(605, 883);
-            this.chart2.Name = "chart2";
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            series2.YValuesPerPoint = 4;
-            this.chart2.Series.Add(series2);
-            this.chart2.Size = new System.Drawing.Size(300, 300);
-            this.chart2.TabIndex = 22;
-            this.chart2.Text = "chart2";
             // 
             // Form1
             // 
@@ -657,17 +567,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1050, 448);
-            this.Controls.Add(this.chart2);
-            this.Controls.Add(this.chart1);
-            this.Controls.Add(this.lstColaReady);
+            this.ClientSize = new System.Drawing.Size(1098, 509);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.dgvFinalizado);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.dvgWaiting);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.dgvRunning);
-            this.Controls.Add(this.dvgReady);
+            this.Controls.Add(this.dgvReady);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.dgvNew);
@@ -682,16 +589,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvColaProceso)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picMinimizar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picRestaurar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.picCerrar)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNew)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dvgReady)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvReady)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRunning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dvgWaiting)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFinalizado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chart2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -701,9 +603,6 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox picCerrar;
-        private System.Windows.Forms.PictureBox picRestaurar;
-        private System.Windows.Forms.PictureBox picMinimizar;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cmbTipoProceso;
         private System.Windows.Forms.Label label2;
@@ -715,51 +614,48 @@
         private System.Windows.Forms.TextBox txtMemoria;
         private System.Windows.Forms.Button btnAceptar;
         private System.Windows.Forms.DataGridView dgvColaProceso;
+        private System.Windows.Forms.Button btnAuxiliar;
+        private System.Windows.Forms.DataGridView dgvNew;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView dgvReady;
+        private System.Windows.Forms.DataGridView dgvRunning;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.DataGridView dvgWaiting;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.DataGridView dgvFinalizado;
+        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Id;
         private System.Windows.Forms.DataGridViewTextBoxColumn TipoProceso;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantum;
         private System.Windows.Forms.DataGridViewTextBoxColumn Memoria;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cpu;
-        private System.Windows.Forms.Button btnAuxiliar;
-        private System.Windows.Forms.DataGridView dgvNew;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dvgReady;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
-        private System.Windows.Forms.DataGridView dgvRunning;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn11;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn13;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn14;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn15;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.DataGridView dvgWaiting;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn16;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn17;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.DataGridView dgvFinalizado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn21;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn22;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn23;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn24;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn25;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ListBox lstColaReady;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart2;
     }
 }
 

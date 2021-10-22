@@ -17,10 +17,9 @@ namespace ProyectoSimuladorProceso
 {
     public partial class Form1 : Form
     {
-        private static Mutex mut = new Mutex();
-
-        private static Mutex mut1 = new Mutex();
-        private static Mutex mut2 = new Mutex();
+        private static Mutex mutexReady = new Mutex();
+        private static Mutex mutexRunning = new Mutex();
+        private static Mutex mutexWaiting = new Mutex();
 
         delegate void delegado(object valor);
         delegate void delegadoaux(object valor,int i);
@@ -28,6 +27,14 @@ namespace ProyectoSimuladorProceso
         delegate void delegadoWait(object valor);
 
         Log ArchivoLogFinalizado = new Log(@"ProcesosTerminados");
+
+        //Insertarlo a una cola
+        Cola.Cola miColaProceso = new Cola.Cola();
+        Cola.Cola readyCola = new Cola.Cola();
+        Cola.Cola runningCola = new Cola.Cola();
+        Cola.Cola finalizadoCola = new Cola.Cola();
+        Cola.Cola waitingCola = new Cola.Cola();
+
 
         public Form1()
         {
@@ -86,12 +93,6 @@ namespace ProyectoSimuladorProceso
             }
         } 
 
-        //Insertarlo a una cola
-        Cola.Cola miColaProceso = new Cola.Cola();
-        Cola.Cola readyCola = new Cola.Cola();
-        Cola.Cola runningCola = new Cola.Cola();
-        Cola.Cola finalizadoCola = new Cola.Cola();
-        Cola.Cola waitingCola = new Cola.Cola();
         
 
         private void btnAceptar_Click(object sender, EventArgs e)
@@ -114,7 +115,7 @@ namespace ProyectoSimuladorProceso
             {
                 if (dgvColaProceso.RowCount > 0)
                 {
-                    MessageBox.Show(" "+ dgvColaProceso.CurrentRow.Index);
+                    //MessageBox.Show(" "+ dgvColaProceso.CurrentRow.Index);
                     dgvColaProceso.Rows.RemoveAt(dgvColaProceso.CurrentRow.Index);
                     
                 }
@@ -133,36 +134,35 @@ namespace ProyectoSimuladorProceso
         {
             if (item != null)
             {
-                mut.WaitOne();
+                mutexReady.WaitOne();
 
-                Thread.Sleep(4000);
+                readyCola.Push(item);  
 
-
-                readyCola.Push(item);  // 15) impresa   15) navegador 15) java
-
-                delegado MD = new delegado(Actualizar1);
+                delegado MD = new delegado(ActualizarDgvReady);
                 this.Invoke(MD, new object[] { item });
-           
 
-                mut.ReleaseMutex();
+                //1500 = 15 segundos tiempo de espera para pasar al estado de READY
+                Thread.Sleep(1500);
+
+                mutexReady.ReleaseMutex();
 
                 runningHilo();
             }
            
         }
 
-        public void Actualizar1(object item)
+        public void ActualizarDgvReady(object item)
         {
             string[] subs = item.ToString().Split(';');
-            dvgReady.Rows.Add(subs);
+            dgvReady.Rows.Add(subs);
 
             //HISTORIAL DE READY
-            Nodo indice;
+            //Nodo indice;
 
-            for (indice = readyCola.Primero; indice != null; indice = indice.Siguiente)
-            {
-                lstColaReady.Items.Add(indice.Dato.ToString());
-            }
+            //for (indice = readyCola.Primero; indice != null; indice = indice.Siguiente)
+            //{
+            //    lstColaReady.Items.Add(indice.Dato.ToString());
+            //}
 
             if (dgvNew.RowCount > 0)
             {
@@ -190,7 +190,7 @@ namespace ProyectoSimuladorProceso
 
         public void runningHilo() 
         {
-            mut1.WaitOne();
+            mutexRunning.WaitOne();
 
             ClsProceso item;
             item = (ClsProceso)readyCola.Pop();
@@ -204,17 +204,17 @@ namespace ProyectoSimuladorProceso
             {
                 runningCola.Push(item);
 
-                delegadoaux MD2 = new delegadoaux(Actualizar2);
+                delegadoaux MD2 = new delegadoaux(ActualizarDgvs);
                 this.Invoke(MD2, new object[] { item, 0 });
-
-               var result = MessageBox.Show("Desea interumpir el proceso", "Mensaje", MessageBoxButtons.YesNo);
+                string nombre = obtenerDatoProceso(item, 1);
+                var result = MessageBox.Show("Desea interumpir el proceso  "+ nombre, "Mensaje", MessageBoxButtons.YesNo);
 
                 if (result == System.Windows.Forms.DialogResult.Yes)
                 {
-                    MessageBox.Show("Se interumpe");
+                    MessageBox.Show("Se interumpe  " + nombre);
                     //readyCola.Push();
                    
-                    delegadoaux MD3 = new delegadoaux(Actualizar2);
+                    delegadoaux MD3 = new delegadoaux(ActualizarDgvs);
                     this.Invoke(MD3, new object[] { item, 3 });
                   
                     metodo(runningCola.Pop());
@@ -222,13 +222,13 @@ namespace ProyectoSimuladorProceso
                 else
                 {
                     finalizadoCola.Push(runningCola.Pop());
-                    delegadoaux M = new delegadoaux(Actualizar2);
+                    delegadoaux M = new delegadoaux(ActualizarDgvs);
                     this.Invoke(M, new object[] { item, 1 });
                     Thread.Sleep(valor * 100);
                 }
                 //Proceso finalizad
 
-                mut1.ReleaseMutex();
+                mutexRunning.ReleaseMutex();
                // runningHilo();
 
             }
@@ -241,7 +241,7 @@ namespace ProyectoSimuladorProceso
                 Thread.Sleep((valor/2)*100);
                 //MessageBox.Show("Valor Sleep:  "+ valor / 2);
 
-                delegadoaux MD2 = new delegadoaux(Actualizar2);
+                delegadoaux MD2 = new delegadoaux(ActualizarDgvs);
                 this.Invoke(MD2, new object[] { item,0});
 
                 //Actulizar a la espera
@@ -251,11 +251,11 @@ namespace ProyectoSimuladorProceso
                 runningCola.Pop();
                 waitingCola.Push(item);
 
-                delegadoaux MD1 = new delegadoaux(Actualizar2);
+                delegadoaux MD1 = new delegadoaux(ActualizarDgvs);
                 this.Invoke(MD1, new object[] { item, 2 });
 
                 // MessageBox.Show("" + item.ToString()); 
-                mut1.ReleaseMutex();
+                mutexRunning.ReleaseMutex();
 
 
             }
@@ -270,7 +270,7 @@ namespace ProyectoSimuladorProceso
 
         public void waitingHilo() 
         {
-            mut2.WaitOne();
+            mutexWaiting.WaitOne();
 
             object auxItem = waitingCola.Pop();
 
@@ -279,15 +279,11 @@ namespace ProyectoSimuladorProceso
             Thread.Sleep(3000);
             this.Invoke(MD1, new object[] { auxItem });
 
-            
-
             metodo(auxItem);
 
             //ELIMINAR DE LA TABLA WAITING
-            
-
-
-            mut2.ReleaseMutex();
+       
+            mutexWaiting.ReleaseMutex();
         }
 
         public void ActualizarTablaWaiting(object item)
@@ -315,8 +311,11 @@ namespace ProyectoSimuladorProceso
             string[] subs = item.ToString().Split(';');
             return subs[i];
         }
-
-        public void Actualizar2(object item,int opcion)
+        public static String GetTimestamp(DateTime value)
+        {
+            return value.ToString("yyyy/MM/dd HH:mm:ss.ffff");
+        }
+        public void ActualizarDgvs(object item,int opcion)
         {
             string[] subs = item.ToString().Split(';');
 
@@ -326,7 +325,7 @@ namespace ProyectoSimuladorProceso
                 dgvFinalizado.Rows.Add(subs);
 
              
-                ArchivoLogFinalizado.Agregar("→" + item.ToString());
+                ArchivoLogFinalizado.Agregar("→ " + GetTimestamp(DateTime.Now)+  "  "+ item.ToString());
 
                 if (dgvRunning.RowCount > 0)
                 {
@@ -393,30 +392,19 @@ namespace ProyectoSimuladorProceso
             {
                 dgvRunning.Rows.Add(subs);
 
-                chart1.Series.Clear();
-                chart1.Titles.Clear();
-
-                chart2.Series.Clear();
-                //chart2.Titles.Clear();
-
-                
-                graficaCpu(Convert.ToInt32(obtenerDatoProceso(item, 4)));
-
-                graficaMemoria(float.Parse(obtenerDatoProceso(item, 3)));
-
-                if (dvgReady.RowCount > 0)
+                if (dgvReady.RowCount > 0)
                 {
 
                     string[] auxProceso = item.ToString().Split(';');
 
-                    foreach (DataGridViewRow Row in dvgReady.Rows)
+                    foreach (DataGridViewRow Row in dgvReady.Rows)
                     {
                         String strFila = Row.Index.ToString();
                         string Valor = Convert.ToString(Row.Cells["dataGridViewTextBoxColumn7"].Value);
 
                         if (Valor == auxProceso[1])
                         {
-                            dvgReady.Rows.RemoveAt(Convert.ToInt32(strFila));
+                            dgvReady.Rows.RemoveAt(Convert.ToInt32(strFila));
                         }
                     }
                 }
@@ -429,45 +417,9 @@ namespace ProyectoSimuladorProceso
         string[] seriesCpu = { "CPU", "CPU en uso"};
         string[] seriesMemoria = { "MEMORIA", "memoria en uso" };
 
-        public void graficaMemoria(float memoria)
-        {
-            float[] puntos = { 4, memoria };
+        
 
-            chart2.Palette = ChartColorPalette.Pastel;
-            chart2.Titles.Add("Porcentaje Memoria " + memoria);
-
-
-            for (int i = 0; i < seriesMemoria.Length; i++)
-            {
-                Series serie = chart2.Series.Add(seriesMemoria[i]);
-                serie.ChartType = SeriesChartType.Pie;
-
-                //serie.Label = puntos[i].ToString();
-                //.Label = "Memoria Consumida "+memoria;
-
-                //serie.Points.Add(puntos[i]);
-
-                serie.Points.AddXY("Memoria utilizado ",memoria);
-                serie.Points.AddXY("Memoria total 4", 4);
-
-            }
-        }
-
-        public void graficaCpu(int porcentaCPU)
-        {
-            int[] puntos = { 100, porcentaCPU };
-
-            chart1.Palette = ChartColorPalette.Pastel;
-            chart1.Titles.Add("Porcentaje CPU "+porcentaCPU);
-
-            for (int i = 0; i < seriesCpu.Length; i++)
-            {
-                Series serie = chart1.Series.Add(seriesCpu[i]);
-
-                serie.Label = puntos[i].ToString();
-                serie.Points.Add(puntos[i]);
-            }
-        }
+       
 
         private void dgvRunning_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
